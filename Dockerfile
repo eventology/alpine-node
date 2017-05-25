@@ -32,4 +32,16 @@ RUN apk add --no-cache nodejs groff less python py-pip && \
 
 WORKDIR /src
 
+ONBUILD ARG S3_CONFIG_PATH
+ONBUILD ENV S3_CONFIG_PATH=$S3_CONFIG_PATH
+
+ONBUILD COPY . .
+ONBUILD RUN mv ./.npmrc ~/.npmrc && \
+  apk add --no-cache --virtual .build-deps g++ make git ca-certificates curl && \
+# Install node modules
+  npm install --production && \
+# Remove depenencies
+  apk del .build-deps && \
+  rm -rf ~/.npmrc
+
 ENTRYPOINT ["/bootstrap.sh"]
