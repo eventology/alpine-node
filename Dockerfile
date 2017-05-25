@@ -5,9 +5,7 @@ MAINTAINER Chance Hudson
 ENV VIPS="vips-8.4.5"
 ENV VIPS_SHA1="c14cedb175836f6f877689d1cbf9689d54aa9b1e"
 
-COPY ./bootstrap.sh /bootstrap.sh
-
-# Install vips deps
+# Install vips
 RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
   giflib-dev tiff-dev && \
   apk add --no-cache --virtual .build-deps g++ make python outils-sha1 && \
@@ -20,9 +18,12 @@ RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
   ./configure && make && make install && \
   cd .. && rm -rf ${VIPS} ${VIPS}.tar.gz && \
 # Remove depenencies
-  apk del .build-deps && \
+  apk del .build-deps
+
+COPY ./bootstrap.sh /bootstrap.sh
+
 # Install nodejs and awscli
-  apk add --no-cache nodejs groff less python py-pip && \
+RUN apk add --no-cache nodejs groff less python py-pip && \
   pip --no-cache-dir install awscli && \
 # Make entrypoint executable
   chmod +x /bootstrap.sh && \
