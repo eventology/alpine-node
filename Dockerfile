@@ -24,7 +24,7 @@ RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
 # Install nodejs and awscli
   apk add --no-cache nodejs groff less python py-pip && \
   pip --no-cache-dir install awscli && \
-# Make initial entrypoint executable
-  chmod +x /_bootstrap.sh
+# Make the src directory
+  mkdir /src
 
-ENTRYPOINT ["/_bootstrap.sh"]
+WORKDIR /src
