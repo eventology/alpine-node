@@ -5,8 +5,6 @@ MAINTAINER Chance Hudson
 ENV VIPS="vips-8.4.5"
 ENV VIPS_SHA1="c14cedb175836f6f877689d1cbf9689d54aa9b1e"
 
-COPY ./_bootstrap.sh /_bootstrap.sh
-
 # Install vips deps
 RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
   giflib-dev tiff-dev && \
