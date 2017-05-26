@@ -23,7 +23,7 @@ RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
 COPY ./bootstrap.sh /bootstrap.sh
 
 # Install nodejs and awscli
-RUN apk add --no-cache nodejs groff less python py-pip && \
+RUN apk add --no-cache nodejs-npm groff less python py-pip && \
   pip --no-cache-dir install awscli && \
 # Make entrypoint executable
   chmod +x /bootstrap.sh && \
