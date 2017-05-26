@@ -15,7 +15,7 @@ RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
   tar -xzf ${VIPS}.tar.gz && \
 # Go into vips directory, build, install, then delete
   cd ${VIPS} && \
-  ./configure && make && make install && \
+  ./configure && make > /dev/null && make install && \
   cd .. && rm -rf ${VIPS} ${VIPS}.tar.gz && \
 # Remove depenencies
   apk del .build-deps
