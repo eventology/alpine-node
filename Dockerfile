@@ -33,7 +33,7 @@ RUN apk add --no-cache nodejs-npm groff less python py-pip && \
 WORKDIR /src
 
 ONBUILD COPY . .
-ONBUILD RUN mv ./.npmrc ~/.npmrc && \
+ONBUILD RUN mv ./.npmrc ~/.npmrc || true && \
   apk add --no-cache --virtual .build-deps g++ make git ca-certificates curl && \
 # Install node modules
   npm install --production && \
