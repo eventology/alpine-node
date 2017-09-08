@@ -5,7 +5,7 @@ deploy:
   stage: build
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - export TIMESTAMP = $(date +%s)
+    - export TIMESTAMP=$(date +%s)
     - echo $TIMESTAMP
     - docker build . -t $CI_REGISTRY_IMAGE:$TIMESTAMP
     - docker push $CI_REGISTRY_IMAGE:$TIMESTAMP
