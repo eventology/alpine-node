@@ -7,7 +7,7 @@ ENV VIPS_SHA1="c14cedb175836f6f877689d1cbf9689d54aa9b1e"
 
 # Install vips
 RUN apk add --no-cache glib-dev libxml2-dev libexif-dev libpng-dev \
-  giflib-dev tiff-dev && \
+  giflib-dev tiff-dev wget && \
   apk add --no-cache --virtual .build-deps g++ make python outils-sha1 && \
 # Download tarball, match sha1, decompress and delete
   wget http://www.vips.ecs.soton.ac.uk/supported/current/${VIPS}.tar.gz && \
@@ -33,7 +33,7 @@ RUN apk add --no-cache nodejs-npm groff less python py-pip && \
 WORKDIR /src
 
 ONBUILD COPY . .
-ONBUILD RUN mv ./.npmrc ~/.npmrc && \
+ONBUILD RUN mv ./.npmrc ~/.npmrc || true && \
   apk add --no-cache --virtual .build-deps g++ make git ca-certificates curl && \
 # Install node modules
   npm install --production && \
