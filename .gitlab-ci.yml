@@ -7,7 +7,7 @@ before_script:
 latest:
   stage: build
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:latest -f ./latest/Dockerfile
+    - docker build -t $CI_REGISTRY_IMAGE:latest -f ./latest/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:latest
   only:
     - master
@@ -15,7 +15,7 @@ latest:
 nobuild:
   stage: build
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:nobuild -f ./nobuild/Dockerfile
+    - docker build -t $CI_REGISTRY_IMAGE:nobuild -f ./nobuild/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:nobuild
   only:
     - master
@@ -23,7 +23,7 @@ nobuild:
 nobuild-vips:
   stage: build
   script:
-    - docker build -t $CI_REGISTRY_IMAGE/vips:nobuild -f ./vips-nobuild/Dockerfile
+    - docker build -t $CI_REGISTRY_IMAGE/vips:nobuild -f ./vips-nobuild/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE/vips:nobuild
   only:
     - master
