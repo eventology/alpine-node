@@ -4,11 +4,19 @@ stages:
 before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-latest:
+autobuild:
   stage: build
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:latest -f ./latest/Dockerfile .
-    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker build -t $CI_REGISTRY_IMAGE:autobuild -f ./autobuild/Dockerfile .
+    - docker push $CI_REGISTRY_IMAGE:autobuild
+  only:
+    - master
+
+autobuild-vips:
+  stage: build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE/vips:autobuild -f ./autobuild-vips/Dockerfile .
+    - docker push $CI_REGISTRY_IMAGE/vips:autobuild
   only:
     - master
 
