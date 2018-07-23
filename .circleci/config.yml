@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: *DockerLogin
-      - run: docker build -t eventology/alpine-node:vips -f ./vips/Dockerfile
+      - run: docker build -t eventology/alpine-node:vips -f ./vips/Dockerfile .
       - run: docker push eventology/alpine-node:vips
 workflows:
   version: 2
