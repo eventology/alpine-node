@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:latest
 MAINTAINER Chance Hudson
 
 COPY bootstrap.sh /bootstrap.sh

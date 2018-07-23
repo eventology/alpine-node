@@ -1,4 +1,4 @@
-FROM docker.cosmunity.com/images/alpine-vips:latest
+FROM eventology/alpine-vips:latest
 MAINTAINER Chance Hudson
 
 COPY ./bootstrap.sh /bootstrap.sh
