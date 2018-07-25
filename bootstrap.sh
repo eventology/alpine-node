@@ -9,4 +9,8 @@ else
   echo "No S3 config path supplied, skipping copy phase"
 fi
 
-exec npm start
+if [ -n "$START_COMMAND" ]; then
+  START_COMMAND=npm start
+fi
+
+exec ${START_COMMAND}
