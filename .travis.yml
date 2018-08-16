@@ -8,14 +8,14 @@ auth: &Auth |
 jobs:
   include:
     - stage: build
-    - name: "Build latest tag"
-    - script:
+      name: "Build latest tag"
+      script:
       - *Auth
       - docker build . -t eventology/alpine-node:latest
       - docker push eventology/alpine-node:latest
     - stage: build_vips
-    - name: "Build vips tag"
-    - script:
+      name: "Build vips tag"
+      script:
       - *Auth
       - docker build -t eventology/alpine-node:vips -f ./vips/Dockerfile .
       - docker push eventology/alpine-node:vips
