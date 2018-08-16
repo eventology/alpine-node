@@ -1,0 +1,7 @@
+dist: trusty
+sudo: required
+
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build . -t eventology/alpine-node:latest
+  - docker push eventology/alpine-node:latest
