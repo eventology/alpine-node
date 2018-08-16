@@ -1,8 +1,16 @@
 dist: trusty
 sudo: required
 
-script:
+before_script:
   - npm i -g travis-env && eval "$(travis-env)"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build . -t eventology/alpine-node:latest
-  - docker push eventology/alpine-node:latest
+jobs:
+  include:
+    - stage: build
+    - name: "Build latest tag"
+    - script:
+      - docker build . -t eventology/alpine-node:latest
+      - docker push eventology/alpine-node:latest
+
+stages:
+  - build
