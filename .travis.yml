@@ -8,7 +8,7 @@ notifications:
   email:
     on_success: change
     on_failure: change
-auth: |
+auth: &Auth |
   npm i -g travis-env && eval "$(travis-env)"
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 jobs:
@@ -16,17 +16,13 @@ jobs:
   - stage: build
     name: Build latest tag
     script:
-    - |
-      npm i -g travis-env && eval "$(travis-env)"
-      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - *Auth
     - docker build . -t eventology/alpine-node:latest
     - docker push eventology/alpine-node:latest
   - stage: build_vips
     name: Build vips tag
     script:
-    - |
-      npm i -g travis-env && eval "$(travis-env)"
-      echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - *Auth
     - docker build -t eventology/alpine-node:vips -f ./vips/Dockerfile .
     - docker push eventology/alpine-node:vips
 stages:
