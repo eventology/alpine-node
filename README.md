@@ -1,4 +1,4 @@
-# alpine-node [![Build Status](https://travis-ci.com/eventology/alpine-node.svg?token=Pz62t27i4ngVwMxU3DsS&branch=master)](https://travis-ci.com/eventology/alpine-node)
+# alpine-node [![Build Status](https://travis-ci.org/eventology/alpine-node.svg?branch=master)](https://travis-ci.org/eventology/alpine-node)
 
 The base node image for use in fan guru.
 
