@@ -1,5 +1,6 @@
 dist: trusty
 sudo: required
+language: generic
 notifications:
   slack:
     secure: jn2Zq2IyJMW2fB3PSsBiTgVJCwUm8d25HWK90d1D23DkOCjGyr3FIZRzyRCWSltPC/16iv7J7/ud2P8Vfy+g47hhPcjddQMhmkJjymJaRp3Ar5j2U7aE2SB8CYULHNYZ7GmC5FzG8taehI9ZPdOFPUIJReSU987rvLac5vJtrS7EUtgupZ7VTG+X049gGCNOwjg7qnL+k8iSizQNG97wWlht1cWnLevHYK3vCMYQQ5PFO9OX/Wd90va4il8V2Kj7b+3N5isMJWzC8JgYfR4n4PXIVc3bcI10tO8qufwKiWxskOKIUaaiSw4Vcmvpe1/VMcO4CxS0an91ixUdQRIPG2Lt37WFo7ys35iUVPXELjqFRuBKLHlCncqxukt8MHLxqfUhsWlsKw+TJ6RBrzw26cR8hfsFttQuZM9vruNzJ/x4hT8YlooJJPmnhjfm0lZ94gIeTsYyqy9rqEShJwO/p9A4vxywxFiFnDHlrqL1eG6A5qksVJxH5yT9D4fUbyESfLWBylgLPWGGVDLBlXG9zQcg1e4Vq8Eh1PPuGPP0gSzci5Kf9Ivb6kti897J4iTdcr2lGfR+9zItShPcFEHefNDWa+LNb6JBkYXy9PlcmpZZ9r45UJG7lemcQqXhx+qCK9qjGCCQaqRYMGwHWJ5cmNrwSJfqKwoAqooMMbbs9C8=
@@ -9,7 +10,7 @@ notifications:
     on_success: change
     on_failure: change
 auth: &Auth |
-  npm i -g travis-env && eval "$(travis-env)"
+  eval "$(npx travis-env)"
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 jobs:
   include:
