@@ -1,5 +1,4 @@
-FROM eventology/alpine-vips:latest
-MAINTAINER Chance Hudson
+FROM 712623285669.dkr.ecr.us-east-1.amazonaws.com/alpine-vips:latest
 
 COPY ./bootstrap.sh /bootstrap.sh
 
@@ -7,9 +6,9 @@ COPY ./bootstrap.sh /bootstrap.sh
 RUN apk add --no-cache nodejs-npm groff less python py-pip && \
   pip --no-cache-dir install awscli && \
   apk add --no-cache g++ make git ca-certificates curl && \
-# Make entrypoint executable
+  # Make entrypoint executable
   chmod +x /bootstrap.sh && \
-# Make the src directory
+  # Make the src directory
   mkdir /src
 
 WORKDIR /src
